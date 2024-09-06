@@ -9,6 +9,9 @@ function random(){
 
     alert(secretNumber);
 
+    clearField();
+    
+
 }
 
 function generateAleatoryNumber(quantity, from, to){
@@ -25,4 +28,12 @@ function generateAleatoryNumber(quantity, from, to){
         }
     }
     return listNumber;
+}
+
+function clearField(){
+    let inputs = document.querySelectorAll('input');
+
+    inputs.forEach(function(input){
+        input.value = '';
+    })
 }
