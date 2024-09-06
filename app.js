@@ -13,12 +13,16 @@ function random(){
 
 function generateAleatoryNumber(quantity, from, to){
 
+    listNumber = [];
+
     for (let i = 0; i < quantity; i++){
         let chosenNumber = parseInt(Math.random() * to + 1);
-        listNumber.push(chosenNumber);
-    }
 
+        if (listNumber.includes(chosenNumber)){
+            return generateAleatoryNumber(quantity, from, to);
+        } else {
+            listNumber.push(chosenNumber);
+        }
+    }
     return listNumber;
 }
-
-
