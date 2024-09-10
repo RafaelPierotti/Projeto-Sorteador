@@ -1,19 +1,18 @@
 let listNumber = [];
 
-function random(){
-    let quantity = parseInt(document.getElementById('quantity').value);
+function random(){ // função ao apertar o botão de sortear
+    let quantity = parseInt(document.getElementById('quantity').value); // coleta os dados colcoados pelo usuário
     let from = parseInt(document.getElementById('from').value);
     let to = parseInt(document.getElementById('to').value);
 
-    let secretNumber = generateAleatoryNumber(quantity, from, to);
-
-    clearField();
+    let secretNumber = generateAleatoryNumber(quantity, from, to); 
 
     displyText();
     
+    changeButtonStatus();
 }
 
-function generateAleatoryNumber(quantity, from, to){
+function generateAleatoryNumber(quantity, from, to){ //função para gerar número aleatório
 
     listNumber = [];
 
@@ -29,19 +28,41 @@ function generateAleatoryNumber(quantity, from, to){
     return listNumber;
 }
 
-function clearField(){
+function clearField(){ // função para limpar os campos
     let inputs = document.querySelectorAll('input');
 
     inputs.forEach(function(input){
         input.value = '';
     })
+
+    document.getElementById('result').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
 }
 
-function displyText(){
+function displyText(){ // função para exibir os números secretos
     let text = document.getElementById('result');
 
-    let numberText = listNumber.length == 1 ? 'Número sorteado' : 'Números sorteados';
-    text.innerHTML = `<label class="texto__paragrafo">${numberText}: ${listNumber}</label>`;
-    
+    if (quantity < to){
+        document.getElementById('result').innerHTML = '<label class="texto__paragrafo">Número inválido</label>';
+    } else {
+        let numberText = listNumber.length == 1 ? 'Número sorteado' : 'Números sorteados';
+        text.innerHTML = `<label class="texto__paragrafo">${numberText}: ${listNumber}</label>`;
+    }
     return text.innerHTML;
+}
+
+function changeButtonStatus(){ // função para alterar o status do botão reiniciar
+    let button = document.getElementById('restart-button');
+
+    if (button.classList.contains('container__botao-desabilitado')){
+        button.classList.remove('container__botao-desabilitado');
+        button.classList.add('container__botao');
+    } else {
+        button.classList.remove('container__botao');
+        button.classList.add('container__botao-desabilitado')
+    }
+}
+
+function restart (){ // função do botão de restart
+    clearField();
+    changeButtonStatus();
 }
