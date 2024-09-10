@@ -7,11 +7,10 @@ function random(){
 
     let secretNumber = generateAleatoryNumber(quantity, from, to);
 
-    alert(secretNumber);
-
     clearField();
-    
 
+    displyText();
+    
 }
 
 function generateAleatoryNumber(quantity, from, to){
@@ -36,4 +35,13 @@ function clearField(){
     inputs.forEach(function(input){
         input.value = '';
     })
+}
+
+function displyText(){
+    let text = document.getElementById('result');
+
+    let numberText = listNumber.length == 1 ? 'Número sorteado' : 'Números sorteados';
+    text.innerHTML = `<label class="texto__paragrafo">${numberText}: ${listNumber}</label>`;
+    
+    return text.innerHTML;
 }
