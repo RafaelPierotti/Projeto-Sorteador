@@ -7,7 +7,7 @@ function random(){ // função ao apertar o botão de sortear
 
     let secretNumber = generateAleatoryNumber(quantity, from, to); 
 
-    displyText();
+    displayText(from, to);
     
     changeButtonStatus();
 }
@@ -38,11 +38,11 @@ function clearField(){ // função para limpar os campos
     document.getElementById('result').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
 }
 
-function displyText(){ // função para exibir os números secretos
+function displayText(from, to){ // função para exibir os números secretos
     let text = document.getElementById('result');
 
-    if (quantity < to){
-        document.getElementById('result').innerHTML = '<label class="texto__paragrafo">Número inválido</label>';
+    if (from > to){
+        text.innerHTML = '<label class="texto__paragrafo">Número inválido</label>';
     } else {
         let numberText = listNumber.length == 1 ? 'Número sorteado' : 'Números sorteados';
         text.innerHTML = `<label class="texto__paragrafo">${numberText}: ${listNumber}</label>`;
